@@ -7,12 +7,12 @@ nav.navbar.nav-small {
 nav.navbar {
    -webkit-transition: all 0.01s ease;
    transition: all 0.01s ease;
-   -webkit-box-shadow: 0 8px 6px -6px #999;
-   -moz-box-shadow: 0 8px 6px -6px #999;
-   box-shadow: 0 8px 6px -6px #999;
+   -webkit-box-shadow: 0 10px 8px -6px #999;
+   -moz-box-shadow: 0 10px 8px -6px #999;
+   box-shadow: 0 10px 8px -6px #999;
 }
 svg.svg-small {
-  width: 40px;
+  width: 100px;
   height: 30px;
 }
 
@@ -24,9 +24,9 @@ svg{
 }
 
 tspan.l{
-  font-size: 10px;
+  font-size: 100px;
 }
 
 tspan.s{
-  font-size: 10px;
+  font-size: 300px;
 }
