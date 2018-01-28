@@ -33,3 +33,7 @@ $(window).scroll(function() {
     $('svg.scroll-shrinkable').find("tspan").removeClass('s');
   }
 });
+
+$(document).ready(function(){
+  $('svg.scroll-shrinkable').find("tspan").addClass('l');
+})
