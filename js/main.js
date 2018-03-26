@@ -28,7 +28,7 @@ $(window).scroll(function() {
     lt.changeText(names[1], names[0]);
     lt.changeText(names[3], names[2]);
     lt.moveText("Teck", 432.95773, 908.80585);
-    lt.moveText("Beck", 432.95773, 796.30585);
+    lt.moveText("Beck", 420.95773, 796.30585);
     $('svg.scroll-shrinkable').find("tspan").addClass('l');
     $('svg.scroll-shrinkable').find("tspan").removeClass('s');
   }
