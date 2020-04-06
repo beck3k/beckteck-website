@@ -66,6 +66,17 @@ const properties = {
     }
 };
 
+var selected;
+
+function getRGB(str){
+    var match = str.match(/rgba?\((\d{1,3}), ?(\d{1,3}), ?(\d{1,3})\)?(?:, ?(\d(?:\.\d?))\))?/);
+    return match ? {
+      red: match[1],
+      green: match[2],
+      blue: match[3]
+    } : {};
+}
+
 function writeInfo(layer, id) {
     var layerObj = properties.layers[layer];
     var element = layerObj.elements[id];
@@ -81,28 +92,54 @@ function writeInfo(layer, id) {
     }
 }
 
-function handleHover(layer, id) {
-    console.log(layer, id);
+function clearColors(){
+    $("#svg-object").ready(() => {
+        var svgRoot = $("#svg-object").contents();
+        Object.keys(properties.layers).forEach(layer => {
+            Object.keys(properties.layers[layer].elements).forEach(element => {
+                if(element != selected){
+                    var target = properties.layers[layer].elements[element];
+                    color = getRGB(target.color);
+                    svgRoot.find(`#${target.id}`).css("fill", `rgb(${color.red}, ${color.green}, ${color.blue})`)
+                } else {
+                }
+            });
+       });
+    });
+}
+
+function handleHover(layer, id, svgRoot) {
     var layerObj = properties.layers[layer];
     var elementObj = layerObj.elements[id];
     var name = "";
     if(elementObj.name){
         name = `-> ${elementObj.name}`;
     }
-    $("#hovering").text(`Hovering: ${layerObj.name} ${name}`);
+    selected = id;
+    clearColors();
+    var color = getRGB(elementObj.color);
+    color.red = parseInt(color.red) + 50;
+    color.green = parseInt(color.green) + 50;
+    color.blue = parseInt(color.blue) + 50;
+    svgRoot.find(`#${elementObj.id}`).css("fill", `rgb(${color.red}, ${color.green}, ${color.blue})`);
+}
+
+function mouseLeaveHandle(layer, id, svgRoot) {
+//     var layerObj = properties.layers[layer];
+//     var elementObj = layerObj.elements[id];
+//     svgRoot.find(`#${elementObj.id}`).css(elementObj.color);
 }
 
 $(document).ready(() => {
     $("#svg-object").ready(() => {
         var svgRoot = $("#svg-object").contents();
         Object.keys(properties.layers).forEach(layer => {
-            console.log(layer);
             Object.keys(properties.layers[layer].elements).forEach(element => {
-                console.log(element);
                 var target = properties.layers[layer].elements[element];
-                console.log(target.id);
-                svgRoot.find(`#${target.id}`).hover(() => handleHover(layer, element));
+                target.color = svgRoot.find(`#${target.id}`).css("fill");
+                svgRoot.find(`#${target.id}`).hover(() => handleHover(layer, element, svgRoot));
                 svgRoot.find(`#${target.id}`).click(() => writeInfo(layer, element));
+                svgRoot.find(`#${target.id}`).mouseleave(() => mouseLeaveHandle(layer, element, svgRoot));
             });
        });
     });
