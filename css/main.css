@@ -1,32 +1,15 @@
-nav.navbar.nav-small {
-  min-height: 10px;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-nav.navbar {
-   -webkit-transition: all 0.01s ease;
-   transition: all 0.01s ease;
-   -webkit-box-shadow: 0 10px 8px -6px #999;
-   -moz-box-shadow: 0 10px 8px -6px #999;
-   box-shadow: 0 10px 8px -6px #999;
-}
-svg.svg-small {
-  width: 100px;
-  height: 30px;
+body {
+    background: url("/bg.jpg"), rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.4);
+    background-repeat: repeat;
+    background-size: 15%;
 }
 
-svg{
-  width: 100px;
-  height: 60px;
-  -webkit-transition: all 0.01s linear;
-  transition: all 0.01s linear;
-}
-
-tspan.l{
-  font-size: 100px;
-}
-
-tspan.s{
-  font-size: 300px;
+.logo {
+    width: 256px;
+    padding: 25px;
+    position: absolute;
+    opacity: 0.9;
+    top: 0;
+    left: 0;
 }
